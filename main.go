@@ -245,6 +245,8 @@ func update(dt time.Duration){
 		if pieceLockTimer >= time.Second/2{
 			//place piece into gamefield
 			gameField = placePiece(currentPiece,gameField,currentPos[0],currentPos[1])
+			countLockTimer = false
+			pieceLockTimer = 0
 		}
 	}
 	if pieceDropTimer >= pieceDropInterval {
@@ -378,5 +380,12 @@ loop:
 
 	s.Fini()
 
-	fmt.Println(gameField)
+	//fmt.Println(gameField)
+	for i := 0;i<10;i++{
+		s := ""
+		for j := 0;j<40;j++{
+			s += strconv.Itoa(int(gameField[i][j]))
+		}
+		fmt.Println(s)
+	}
 }
